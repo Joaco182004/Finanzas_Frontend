@@ -1,0 +1,35 @@
+<section>
+    <div class="left-container">
+     
+        <img class="logo" src="https://www.mivivienda.com.pe/PortalCMS/archivos/documentos/FMV%20LOGO-3203.PNG"> 
+        <nav>
+            <ul>
+                <li routerLink="/dashboard/home" (click)="colorSeleccion(1)" [style]="{color:colorSelect1}"><ion-icon  [name]="name1" class="icon" ></ion-icon>Home</li>
+                <li routerLink="/dashboard/engine" (click)="colorSeleccion(2)" [style]="{color:colorSelect2}"><ion-icon  [name]="name2" class="icon"></ion-icon>Realizar Corrida</li>
+                <li routerLink="/dashboard/historial" (click)="colorSeleccion(3)" [style]="{color:colorSelect3}"><ion-icon  [name]="name3" class="icon"></ion-icon>Historial de Corridas</li>
+                <li (click)="colorSeleccion(4);" [style]="{color:colorSelect4}"><ion-icon  [name]="name4" class="icon"></ion-icon>Cerrar Sesión</li>
+            </ul>
+        </nav>
+     
+    </div>
+    <div class="right-container">
+        
+        <router-outlet></router-outlet>
+    </div>
+    <div class="filtro" *ngIf="cerrar"></div>
+    <div class="cerrar-sesion" *ngIf="cerrar">
+        <div class="left-sesion">
+            <h2>NOS VEMOS PRONTO</h2>
+            <h5>Esperamos volver a verlo y ofrecerle el mejor servicio financiero.  </h5>
+        </div>
+        <div class="right-sesion">
+            <p>¿Esta seguro que quieres salir de su cuenta?</p>
+            <button style="margin-top: 1rem;"  (click)="cerrarSesion()">Aceptar</button>
+            <button (click)="cerrar=false;" >Cancelar</button>
+        </div>
+    </div>
+    <div class="circle red"></div>
+    <div class="circle green"></div>
+    <div class="circle purple"></div>
+    <div class="circle pink"></div>
+</section>

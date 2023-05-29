@@ -1,0 +1,341 @@
+<section>
+    <h1 class="tracking-in-expand">Realizar Corrida</h1>
+    <div class="formularios" *ngIf="!iniciarCorrida">
+        <form class="datos-bono" [formGroup]="val_ini">
+            <mat-form-field appearance="fill" class="select" >
+                <mat-label>Seleccione la moneda</mat-label>
+                <mat-select disableRipple formControlName="mon">
+                  <mat-option value="Dólares" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Dólares</mat-option>
+                  <mat-option value="Soles" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Soles</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input" >
+                <mat-label>Ingrese el valor del inmueble</mat-label>
+                <input type="number" formControlName="inm" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input" >
+                <mat-label>Ingrese el % de la cuota inicial
+                </mat-label>
+                <input type="number" matInput formControlName="cuo_i" >
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="select"  >
+                <mat-label>Seleccione el tipo de tasa</mat-label>
+                <mat-select (valueChange)="validarAparicion($event)" disableRipple formControlName="tip_t">
+                  <mat-option value="TE" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Tasa Efectiva</mat-option>
+                  <mat-option value="TN" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Tasa Nominal</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="select">
+                <mat-label>Seleccione el tiempo de la tasa</mat-label>
+                <mat-select disableRipple  formControlName="tie_t">
+                  <mat-option value="M" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Mensual</mat-option>
+                  <mat-option value="B" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Bimestral</mat-option>
+                  <mat-option value="T" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Trimestral</mat-option>
+                  <mat-option value="S" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Semestral</mat-option>
+                  <mat-option value="A" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Anual</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="select" *ngIf="aparicion_tiempo_cap">
+                <mat-label>Seleccione la capitalización</mat-label>
+                <mat-select  disableRipple  formControlName="tie_c" >
+                
+                  <mat-option value="Diaria" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Diaria</mat-option>
+                  <mat-option value="Mensual" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Mensual</mat-option>
+                  <mat-option value="Bimestral" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Bimestral</mat-option>
+                  <mat-option value="Trimestral" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Trimestral</mat-option>
+                  <mat-option value="Semestral" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Semestral</mat-option>
+                  <mat-option value="Anual" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Anual</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input">
+                <mat-label>Ingrese el valor de la tasa
+                </mat-label>
+                <input type="number"  matInput  formControlName="val_t">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="select">
+                <mat-label>Seleccione la frecuencia de pago</mat-label>
+                <mat-select  disableRipple  formControlName="frec_p">
+                  <mat-option value="Mensual" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Mensual</mat-option>
+                  <mat-option value="Bimestral" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Bimestral</mat-option>
+                  <mat-option value="Trimestral" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Trimestral</mat-option>
+                  <mat-option value="Semestral" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Semestral</mat-option>
+                  <mat-option value="Anual" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Anual</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input" >
+                <mat-label>Cantidad de años para pagar
+                </mat-label>
+                <input type="number"  matInput formControlName="tie_p" >
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="select"  >
+                <mat-label>Seleccione el plazo de gracia</mat-label>
+                <mat-select formControlName="plazo" value="Ninguno" (valueChange)="validarAparicionPlazo($event)" disableRipple>
+                  <mat-option value="Ninguno" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Ninguno</mat-option>
+                  <mat-option value="Parcial" style="font-family: 'Montserrat', sans-serif;
+                  color: rgb(47, 15, 55);">Parcial</mat-option>
+                     <mat-option value="Total" style="font-family: 'Montserrat', sans-serif;
+                     color: rgb(47, 15, 55);">Total</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="plazo_gracia" *ngIf="aparcion_tiem_plazo">
+                <mat-form-field  appearance="fill" class="input plazo_gracia_input" >
+                    <mat-label>En que periodo el plazo de gracia
+                    </mat-label>
+                    <input type="number" matInput formControlName="plazo_p" >
+                </mat-form-field>
+                <p *ngIf="errorPeriodo"><span style="font-weight: bold; color: red;">Errror:</span> Ingrese un periodo menor a {{num_periodos}}</p>
+            </div>
+            <mat-form-field appearance="fill" class="input" >
+                <mat-label>Ingrese el valor de COK
+                </mat-label>
+                <input type="number" matInput formControlName="cok" >
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="button" (click)="pasarDatos()" [disabled]="val_ini.invalid">Validar Corrida</button>
+        </form>
+        <div class="show-info">
+            <div class="info">
+                <h4>Tipo de Moneda:</h4> 
+                <h5>{{moneda}}</h5>
+            </div>
+            <mat-divider ></mat-divider>
+            <div class="info">
+                <h4>Precio del inmueble:</h4>
+                <h5>{{simbolo}} {{valor_inmueble}}</h5>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="info">
+                <h4>Primera cuota inicial:</h4>
+                <h5>{{simbolo}} {{valor_inmueble*cuota_inicial/100}}</h5>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="info">
+                <h4>Monto a financiar:</h4>
+                <h5>{{simbolo}} {{monto_financiar}}</h5>
+            </div >
+            <mat-divider></mat-divider>
+            <div class="info">
+                <h4>Tasa:</h4>
+                <h5>{{valor_tasa}}% de {{tipo_tasa}}{{tiempo_tasa}}</h5>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="info" *ngIf="aparicion_tiempo_cap" >
+                <h4>Capitalización</h4>
+                <h5>{{tiempo_cap}}</h5>
+            </div>
+            <mat-divider *ngIf="aparicion_tiempo_cap"></mat-divider >
+            <div class="info">
+                <h4>Tasa Convertida:</h4>
+                <h5>{{nueva_tasa.toString().length>=2 ? nueva_tasa.toFixed(7):nueva_tasa }}% de {{ape_tasa}}</h5>
+            </div>
+           
+            
+            <mat-divider></mat-divider>
+            <div class="info">
+                <h4>N° de años:</h4>
+                <h5>{{cantidad_anios}}</h5>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="info">
+                <h4>Frecuencia de pago:</h4>
+                <h5>{{frecuencia_pago}}</h5>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="info">
+                <h4>N° de periodos:</h4>
+                <h5>{{num_periodos}}</h5>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="info">
+                <h4>Plazo de gracia:</h4>
+                <h5>{{plazo}}</h5>
+            </div>
+            <mat-divider *ngIf="aparcion_tiem_plazo"></mat-divider>
+            <div *ngIf="aparcion_tiem_plazo" class="info">
+                <h4>Periodo de gracia:</h4>
+                <h5>{{tiempo_plazo}}</h5>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="info">
+                <h4>Valor de COK:</h4>
+                <h5>{{cok}}</h5>
+            </div>
+            <button mat-raised-button color="primary" style="margin-top: 2rem;" [disabled]="realizar" (click)="corrida()">Generar Corrida</button>
+        </div>
+    </div>
+    <div *ngIf="iniciarCorrida" class="corrida">
+        <div class="datos-completos">
+            <button class="back" (click)="reiniciar()">
+                <ion-icon class="icon-back" name="arrow-back-circle"></ion-icon>
+                <h5>Realizar otra corrida</h5>
+            </button>
+            <button class="back" (click)="guardarCorrida()">
+                <ion-icon class="icon-back" name="save"></ion-icon>
+                <h5>Guardar Corrida</h5>
+            </button>
+        </div>
+        <div class="indicadores">
+            <div class="van">
+                <h4>VAN:</h4> <h5>{{simbolo}}{{van.toFixed(2)}}</h5>
+            </div>
+            <div class="tir">
+                <h4>TIR:</h4><h5>{{(tir*100).toFixed(7)}}%</h5>
+            </div>
+        </div>
+        <div class="encabezado">
+            <div><h4>N°</h4></div><div><h4>{{this.ape_tasa}}</h4></div><div><h4>Plazo Gracia</h4></div><div><h4>Saldo Inicial</h4></div><div><h4>Interes</h4></div><div><h4>Cuota</h4></div> <div><h4>Amortizacion</h4></div><div><h4>Saldo Final</h4></div>         
+        </div>
+        <div *ngFor="let periodo of supuesto; let i=index">
+            <div class="periodo" *ngIf="i<num_periodos">
+                <div>
+                    <h5>{{i+1}}</h5>
+                </div>
+                <div>
+                   <h5>{{nueva_tasa.toFixed(7)}}%</h5>
+                </div>
+                <div *ngIf="plazo=='Ninguno'">
+                    <h5>S</h5>
+                </div>
+                <div *ngIf="plazo=='Total'">
+                    <h5>{{ i==tiempo_plazo - 1 ?"T": "S"}}</h5>
+                </div>
+                <div *ngIf="plazo=='Parcial'">
+                    <h5>{{ i==tiempo_plazo - 1 ?"P": "S"}}</h5>
+                </div>
+                <div>
+                    <h5>{{simbolo}} {{saldo_iniciales[i]>0 ?saldo_iniciales[i].toFixed(2):(saldo_iniciales[i]*-1).toFixed(2)}}</h5>
+                </div>
+                <div>
+                    <h5>({{simbolo}} {{intereses[i].toFixed(2)}})</h5>
+                </div>
+                <div *ngIf="plazo=='Ninguno'">
+                    <h5>({{simbolo}} {{cuota.toFixed(2)}})</h5>
+                </div>
+                <div *ngIf="plazo=='Total'">
+                    <h5>({{simbolo}} {{ i< tiempo_plazo - 1 ?cuota.toFixed(2): 0}})</h5>
+                </div>
+                <div *ngIf="plazo=='Parcial'">
+                    <h5>({{simbolo}} {{ i< tiempo_plazo - 1 ?cuota.toFixed(2): intereses[tiempo_plazo-1].toFixed(2)}})</h5>
+                </div>
+                <div>
+                    <h5>({{simbolo}} {{amortizaciones[i].toFixed(2)}})</h5>
+                </div>
+                <div>
+                    <h5>{{simbolo}} {{saldo_iniciales[i+1].toFixed(2)}}</h5>
+                </div> 
+            </div>
+        </div>
+        <div *ngFor="let periodo of supuestofinal; let i=index">
+            <div class="periodo" *ngIf="i<num_periodos">
+                <div>
+                    <h5>{{tiempo_plazo+i+1}}</h5>
+                </div>
+                <div>
+                   <h5>{{tasa<=1 ? (tasa*100).toFixed(7):tasa.toFixed(7)}}%</h5>
+                </div>
+                <div>
+                    <h5>S</h5>
+                </div>
+                <div>
+                    <h5>{{simbolo}} {{saldosfinales[i].toFixed(2)}}</h5>
+                </div>
+                <div>
+                    <h5>({{simbolo}} {{interesfinales[i].toFixed(2)}})</h5>
+                </div>
+                <div >
+                    <h5>({{simbolo}} {{ nuevacuota.toFixed(2)}})</h5>
+                </div>
+                <div >
+                    <h5>({{simbolo}} {{amortizacionfinales[i].toFixed(2)}})</h5>
+                </div>
+                <div>
+                    <h5>{{simbolo}} {{saldosfinales[i+1].toFixed(2)}}</h5>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="aviso-save" *ngIf="aviso">
+        <div class="info">
+            <h4>Tipo de Moneda:</h4> 
+            <h5>{{moneda}}</h5>
+        </div>
+        <div class="divider"></div>
+        <div class="info">
+            <h4>Precio del inmueble:</h4>
+            <h5>{{simbolo}} {{valor_inmueble}}</h5>
+        </div>
+        <div class="divider"></div>
+        <div class="info">
+            <h4>Primera cuota inicial:</h4>
+            <h5>{{simbolo}} {{valor_inmueble*cuota_inicial/100}}</h5>
+        </div>
+        <div class="divider"></div>
+        <div class="info">
+            <h4>Monto a financiar:</h4>
+            <h5>{{simbolo}} {{monto_financiar}}</h5>
+        </div >
+        <div class="divider"></div>
+        <div class="info">
+            <h4>Tasa:</h4>
+            <h5>{{valor_tasa}}% de {{tipo_tasa}}{{tiempo_tasa}} <span *ngIf="aparicion_tiempo_cap">con cap. {{tiempo_cap}}</span></h5>
+        </div>
+        <div class="divider"></div>
+        <div class="info">
+            <h4>Tasa Convertida:</h4>
+            <h5>{{nueva_tasa.toFixed(7)}}% de {{ape_tasa}}</h5>
+        </div>
+        
+        <div class="divider"></div>
+        <div class="info">
+            <h4>N° de años:</h4>
+            <h5>{{cantidad_anios}}</h5>
+        </div>
+        <div class="divider"></div>
+        <div class="info">
+            <h4>Frecuencia de pago:</h4>
+            <h5>{{frecuencia_pago}}</h5>
+        </div>
+        <div class="divider"></div>
+        <div class="info">
+            <h4>N° de periodos:</h4>
+            <h5>{{num_periodos}}</h5>
+        </div>
+        <div class="divider"></div>
+        <div class="info">
+            <h4>Plazo de gracia:</h4>
+            <h5>{{plazo}}</h5>
+        </div>
+        <div *ngIf="plazo!='Ninguno'" class="divider"></div>
+        <div *ngIf="plazo!='Ninguno'" class="info">
+            <h4>Periodo de gracia:</h4>
+            <h5>{{tiempo_plazo}}</h5>
+        </div>
+        <div class="divider"></div>
+        <div class="info">
+            <h4>COK:</h4>
+            <h5>{{cok}}</h5>
+        </div>
+
+        <button class="btn-done" routerLink="/dashboard/historial">Aceptar</button>
+    </div>
+</section>

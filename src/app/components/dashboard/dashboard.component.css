@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,800');
+section{
+    width: 100vw;
+    height: 100vh;
+    background: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    
+}
+.logo{
+    width: 200px;
+    position: absolute;
+    top: 0;
+}
+.left-container{
+    width: 300px;
+    position: relative;
+    border-right: 1px solid rgb(214, 211, 214);
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.left-container nav{
+    display: flex;
+}
+.left-container nav ul{
+    list-style: none;
+}
+.left-container nav ul li{
+    font-family: 'Montserrat', sans-serif;
+    margin: 1.8rem;
+    display: flex;
+    align-items: center;
+    color: rgb(173, 168, 174);
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+}
+.left-container nav ul li .icon{
+    margin-right: 1rem;
+    scale: 1.5;
+}
+.circle{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+   
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+   
+    clip-path: circle(50px);
+}
+.red{
+    background: #f8fd71;
+ 
+    bottom:-50px;
+    left: -50px;
+    z-index: 3;
+}
+.green{
+    background: #90ff7c;
+
+    bottom:-50px;
+    left: 50px;
+    z-index: 2;
+}
+.purple{
+    background: #6fc1fb;
+ 
+    bottom:50px;
+    left: -50px;
+    z-index: 1;
+}
+.pink{
+    background: #f595ea;
+    bottom:0px;
+    left: 0px;
+    z-index: 0;
+}
+.right-container{
+    width: calc(100vw - 350px);
+    height: 100vh;
+    margin-left: 2rem;
+}
+
+.filtro{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0.5, 0.5, 0.5,0.5);
+    z-index: 5;
+}
+.cerrar-sesion{
+    width: 600px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 1rem;
+}
+.cerrar-sesion{
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+
+}
+.cerrar-sesion div{
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem 0rem 0rem 1rem;
+}
+.cerrar-sesion .left-sesion{
+    background: rgb(136, 188, 36);
+   
+}
+.left-sesion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Montserrat',sans-serif;
+}
+.left-sesion h2{
+    font-weight: bold;
+    color: white;
+}
+.left-sesion h5{
+    color: white;
+    font-weight: 600;
+}
+.right-sesion{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat',sans-serif;
+}
+
+.right-sesion button{
+
+    margin: 0.5rem;
+    width: 60%;
+    height: 40px;
+    border-radius: 2rem;
+    background: rgb(136, 188, 36);
+    font-weight: 600;
+    color: white;
+}
+
+.tracking-in-expand{-webkit-animation:tracking-in-expand 1.2s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 1.2s cubic-bezier(.215,.61,.355,1.000) both}
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}

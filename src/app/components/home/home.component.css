@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,800');
+
+h1,h4 {
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(47, 15, 55);
+}
+
+p{
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(173, 168, 174);
+    margin-bottom: 1rem;
+}
+h6{
+    font-family: 'Montserrat', sans-serif;
+    color:  rgb(136, 188, 36);;
+    font-weight: 600;
+}
+
+.tracking-in-expand {
+    font-family: 'Montserrat', sans-serif;
+    -webkit-animation: tracking-in-expand 1.2s cubic-bezier(.215, .61, .355, 1.000) both;
+    animation: tracking-in-expand 1.2s cubic-bezier(.215, .61, .355, 1.000) both
+}
+
+@-webkit-keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -.5em;
+        opacity: 0
+    }
+
+    40% {
+        opacity: .6
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -.5em;
+        opacity: 0
+    }
+
+    40% {
+        opacity: .6
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+}
+.pasos{
+    overflow-y: auto;
+    height: 80%;
+}
+.imagen{
+    height: 80%;
+    display: flex;
+    align-items: center;
+}
+.pasos::-webkit-scrollbar-track {
+    border-radius: 0.125rem;
+    background-color: lightgray;
+  }
+  .pasos::-webkit-scrollbar {
+    width: 0.25rem;
+    border-radius: 0.125rem;
+    margin-left: 0.3rem;
+  }
+  .pasos::-webkit-scrollbar-thumb {
+    border-radius: 0.125rem;
+    background-color: gray;
+}

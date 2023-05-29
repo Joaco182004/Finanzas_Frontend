@@ -1,0 +1,51 @@
+<body>
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+   
+    <form action="#" [formGroup]="register" id="register">
+      <h1>Crear cuenta</h1>
+      
+      <span style="margin:1rem; margin-top: 2rem;">Use su correo para registrarse</span>
+      
+      <input type="text" placeholder="Nombre" formControlName="name" />
+      <input type="text" placeholder="Fecha de nacimiento" onfocus="(this.type='date')" onblur="(this.type='text')"  formControlName="date"/>
+      <input type="email" placeholder="Correo"  formControlName="email"/>
+      <input type="password" placeholder="Contraseña" formControlName="psw"/>
+      
+      <p  class="error" *ngIf="msgError">{{msg_error}} </p>
+      <button style="margin-top: 1rem;" [disabled]="register.invalid" type="button" (click)="registro()">Registrate</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+
+    <form action="#" [formGroup]="login">
+      <h1>Inicia sesión</h1>
+      
+      <span style="margin-top: 2rem; margin-bottom: 1rem;">Use su correo y contraseña</span>
+      <input type="email" placeholder="Correo" formControlName="email" (keydown.enter)="inicioSesion()" />
+      <input type="password" placeholder="Contraseña" formControlName="psw" (keydown.enter)="inicioSesion()"/>
+      <p class="error" *ngIf="loginErrorPsw">Correo o contraseña incorrecto</p>
+      <p class="error" *ngIf="loginErrorEmail">Correo no registrado en el sistema</p>
+      <a  href="#" style="margin: 1rem; color: rgb(255, 106, 0);">Olvide la contraseña</a>
+      
+      <button type="button" [disabled]="login.invalid" (click)="inicioSesion()">Inicio Sesión</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    
+    <div class="overlay">
+     
+      <div class="overlay-panel overlay-left">
+        <h1>!Bienvenido de vuelta!</h1>
+        <p>Inicia sesión con tus credenciales para poder ingresar al dashboard.</p>
+        <button class="ghost" id="signIn" (click)="invertirSlide()">Inicio Sesión</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>!Hola, que tal!</h1>
+        <p>Registre su cuenta y disfrute del mundo financiero con nosotros.</p>
+        <button class="ghost" id="signUp" (click)="cambiarSlide()">Registro</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
